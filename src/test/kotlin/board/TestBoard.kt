@@ -1,10 +1,9 @@
-package games.board
+package board
 
+import board.Cell
+import board.createBoard
 import org.junit.Assert
 import org.junit.Test
-import src.main.kotlin.Cell
-import src.main.kotlin.NeighbourPosition
-import src.main.kotlin.createBoard
 import java.lang.IllegalArgumentException
 
 class TestBoard {
@@ -54,9 +53,9 @@ class TestBoard {
             Assert.assertEquals(null, cell.getNeighbour(NeighbourPosition.NORTHWEST)?.positionToString())
             Assert.assertEquals(null, cell.getNeighbour(NeighbourPosition.EAST)?.positionToString())
             Assert.assertEquals(null, cell.getNeighbour(NeighbourPosition.SOUTHEAST)?.positionToString())
-            Assert.assertEquals("(1, 0)", cell.getNeighbour(NeighbourPosition.SOUTH)?.positionToString())
+            Assert.assertEquals("(0, 1)", cell.getNeighbour(NeighbourPosition.SOUTH)?.positionToString())
             Assert.assertEquals("(1, 1)", cell.getNeighbour(NeighbourPosition.SOUTHWEST)?.positionToString())
-            Assert.assertEquals("(0, 1)", cell.getNeighbour(NeighbourPosition.WEST)?.positionToString())
+            Assert.assertEquals("(1, 0)", cell.getNeighbour(NeighbourPosition.WEST)?.positionToString())
         }
     }
 

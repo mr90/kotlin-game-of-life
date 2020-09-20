@@ -1,4 +1,4 @@
-package src.main.kotlin
+package board
 
 data class Cell<T>(val i: Int, val j: Int, var value: T) {
     override fun toString() = "{${positionToString()} = ${valueToString()}}"

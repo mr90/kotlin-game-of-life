@@ -1,4 +1,4 @@
-package src.main.kotlin
+package board
 
 import java.lang.IllegalArgumentException
 
@@ -12,7 +12,6 @@ open class BoardImpl<T>(override val width: Int, override val height: Int, priva
                 Cell(i, j, initValue)
             }
         }
-        println("Board created: \n" + toString())
     }
 
     override fun toString(): String {
@@ -46,21 +45,21 @@ open class BoardImpl<T>(override val width: Int, override val height: Int, priva
     override fun Cell<T>.getNeighbour(neighbour: NeighbourPosition): Cell<T>? {
         return try {
             when (neighbour) {
-                NeighbourPosition.NORTH -> getCell(i-1, j)
+                NeighbourPosition.NORTH -> getCell(i, j-1)
                 NeighbourPosition.NORTHEAST -> getCell(i-1, j-1)
-                NeighbourPosition.NORTHWEST -> getCell(i-1, j+1)
-                NeighbourPosition.SOUTH -> getCell(i+1, j)
-                NeighbourPosition.SOUTHEAST -> getCell(i+1, j-1)
+                NeighbourPosition.NORTHWEST -> getCell(i+1, j-1)
+                NeighbourPosition.SOUTH -> getCell(i, j+1)
+                NeighbourPosition.SOUTHEAST -> getCell(i-1, j+1)
                 NeighbourPosition.SOUTHWEST -> getCell(i+1, j+1)
-                NeighbourPosition.EAST -> getCell(i, j-1)
-                else -> getCell(i, j+1)
+                NeighbourPosition.EAST -> getCell(i-1, j)
+                else -> getCell(i+1, j)
             }
         } catch (e : IllegalArgumentException){
             null
         }
     }
 
-    override fun Cell<T>.getNeighbourhood(): List<Cell<T>>? {
+    public override fun Cell<T>.getNeighbourhood(): List<Cell<T>>? {
         return enumValues<NeighbourPosition>().map { getNeighbour(it) }.filterNotNull()
     }
 
