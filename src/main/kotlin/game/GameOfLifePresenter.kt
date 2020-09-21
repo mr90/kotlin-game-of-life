@@ -11,7 +11,7 @@ class GameOfLifePresenter(private val initializer: IGameOfLifeInitializer, priva
     private var gameLoop: Job? = null
 
     override fun initialize() {
-        initializer.getLive(45).map{
+        initializer.getLive(60).map{
             model.board.setCell(it.i, it.j, it.value)
         }
         println("Board Initialized:\n${model.board}")
