@@ -21,7 +21,7 @@ class GameOfLifeView(initializer: IGameOfLifeInitializer, val settings : GameOfL
                     else game.start()
             }
         })
-        game.initialize()
+        game.initialize(60)
     }
 
     fun getColor(state: State) =

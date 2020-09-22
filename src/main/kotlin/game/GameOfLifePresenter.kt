@@ -5,13 +5,13 @@ import board.createBoard
 import kotlinx.coroutines.*
 import kotlinx.coroutines.swing.Swing
 
-class GameOfLifePresenter(private val initializer: IGameOfLifeInitializer, private val view : IGameOfLifeView?) : IGameOfLifePresenter {
+class GameOfLifePresenter(private val initializer: IGameOfLifeInitializer, private val view : IGameOfLifeView? = null) : IGameOfLifePresenter {
     private val model = GameOfLifeModel(createBoard(initializer.boardWidth, initializer.boardHeight, State.DEAD))
 
     private var gameLoop: Job? = null
 
-    override fun initialize() {
-        initializer.getLive(60).map{
+    override fun initialize(percentOfLife : Int) {
+        initializer.getLive(percentOfLife).map{
             model.board.setCell(it.i, it.j, it.value)
         }
         println("Board Initialized:\n${model.board}")
@@ -53,4 +53,6 @@ class GameOfLifePresenter(private val initializer: IGameOfLifeInitializer, priva
             else -> if (population==3) setCell(cell.i, cell.j, State.LIVE)
         }
     }
+
+    override fun getCountOfLiveCell() = model.board.getAllCells().count{ cell -> cell.value == State.LIVE }
 }

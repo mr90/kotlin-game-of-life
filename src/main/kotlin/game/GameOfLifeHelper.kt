@@ -1,11 +1,12 @@
 package game
 
 interface IGameOfLifePresenter {
-    fun initialize()
+    fun initialize(percentOfLife: Int)
     fun isRunning() : Boolean
     fun start()
     fun stop()
     fun get(i: Int, j: Int) : State
+    fun getCountOfLiveCell() : Int
 }
 
 interface IGameOfLifeView {
